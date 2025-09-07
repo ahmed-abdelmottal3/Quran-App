@@ -18,6 +18,17 @@
       New verse
     </button>
   </section>
+
+
     <script type="module" src="/src/main.js"></script>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "87d025b6-7c44-4a04-bd40-811f43771ec6",
+    });
+  });
+</script>
   </body>
 </html>
