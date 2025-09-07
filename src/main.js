@@ -1,33 +1,30 @@
 const advice = document.getElementById("advice");
 const btn = document.getElementById("btn");
 
-if ("Notification" in window && Notification.permission !== "granted") {
-    Notification.requestPermission();
+function isMobile() {
+  return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
 
-async function getAyah() {
-    try {
-        const res = await fetch("https://api.alquran.cloud/v1/quran/quran-uthmani");
-        const data = await res.json();
+if (!isMobile() && "Notification" in window && Notification.permission !== "granted") {
+  Notification.requestPermission();
+}
 
-        const surahs = data.data.surahs;
-        const randomSurah = surahs[Math.floor(Math.random() * surahs.length)];
-        const randomAyah = randomSurah.ayahs[Math.floor(Math.random() * randomSurah.ayahs.length)];
-        const ayahText = randomAyah.text;
-        const displayText = `﴿${ayahText}﴾ [${randomSurah.englishName} - ${randomAyah.numberInSurah}]`;
-        advice.textContent = displayText;
+async function getAdvice() {
+  try {
+    const res = await fetch("https://api.alquran.cloud/v1/quran/quran-uthmani");
+    const finalres = await res.json();
 
-        if ("Notification" in window && Notification.permission === "granted") {
-            new Notification("📖 آية جديدة", { body: ayahText });
-        }
-    } catch (error) {
-        advice.textContent = "Something went wrong, try again!";
-        console.error(error);
+    const newAdvice = finalres.data.surahs[0].ayahs[0].text;
+    advice.textContent = `"${newAdvice}"`;
+
+    if (!isMobile() && "Notification" in window && Notification.permission === "granted") {
+      new Notification("📖 آية جديدة", { body: newAdvice });
     }
+  } catch (error) {
+    advice.textContent = "حدث خطأ، حاول مرة أخرى!";
+  }
 }
 
-getAyah();
-
-setInterval(getAyah, 300000);
-
-btn.addEventListener("click", getAyah);
+getAdvice();
+setInterval(getAdvice, 300000); 
+btn.addEventListener("click", getAdvice);
