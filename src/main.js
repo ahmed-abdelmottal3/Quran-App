@@ -7,7 +7,7 @@ if ("Notification" in window && Notification.permission !== "granted") {
 
 async function getAyah() {
     try {
-        const res = await fetch("http://api.alquran.cloud/v1/quran/quran-uthmani");
+        const res = await fetch("https://api.alquran.cloud/v1/quran/quran-uthmani");
         const data = await res.json();
 
         const surahs = data.data.surahs;
