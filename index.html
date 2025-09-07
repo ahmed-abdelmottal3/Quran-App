@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style.css">
+    <title>Quran App</title>
+  </head>
+<body class="bg-[#202632] flex items-center justify-center min-h-screen px-4">
+
+  <section
+    class="bg-[#313A49] flex flex-col items-center text-white w-full max-w-md border border-[#ffffff18] rounded-md drop-shadow-[0_0_5px_#ffffff3b] font-mono">
+    <h1 class="py-5 text-[#04d9ff] text-lg md:text-xl">Quranic verse</h1>
+    <p id="advice" class="w-[90%] md:w-[70%] m-auto text-center font-serif text-sm md:text-base mb-5">Loading...</p>
+    <img src="public/pattern-divider-desktop.svg" alt="">
+    <button id="btn"
+      class="bg-[#006d80] cursor-pointer py-2 px-6 my-5 rounded-md hover:bg-transparent hover:border hover:px-8 transition-all duration-300 outline-none text-sm md:text-base">
+      New verse
+    </button>
+  </section>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
